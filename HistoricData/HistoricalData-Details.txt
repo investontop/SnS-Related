@@ -1,0 +1,12 @@
+Where to get the Historical data of any Stock?
+	https://in.investing.com/equities/tata-power-company-historical-data
+
+
+
+Data:
+PriceDetails: "E:\Programming\projects\python\S&S Related\HistoricData\Data\PriceDetails"
+
+	Store the FileName by removing the space inbetween with format YYYYMMDD-StockName-(FromYearToYear) e.g: 20250111-TATAPOWER-(2021-2024).csv
+
+TradePrice  : "E:\Programming\projects\python\S&S Related\HistoricData\Data\TradeDetails"
+
