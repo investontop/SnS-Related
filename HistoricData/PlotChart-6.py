@@ -17,8 +17,8 @@ def get_directories(demat):
     """Get the directories for price and trade details."""
     # base_dir = os.getcwd()
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    price_details = os.path.join(base_dir, "Data", "PriceDetails")
-    trade_details = os.path.join(base_dir, "Data", "TradeDetails", demat)
+    price_details = os.path.join(base_dir, "Datas", "PriceDetails")
+    trade_details = os.path.join(base_dir, "Datas", "TradeDetails", demat)
 
     if os.path.exists(trade_details):
         return price_details, trade_details
