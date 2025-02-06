@@ -112,8 +112,9 @@ def plot_data_hsec(platform, df_price, df_trade, stock_name):
 
     avg_price = calculate_avg_price(df_remaining)
     # Create a list of avg_price with the same length as df_price['Date']
-    avg_price_line = [avg_price] * len(df_price['Date'])
-    plt.plot(df_price['Date'], avg_price_line, linestyle='--', color='grey', label='CurrentAvgPrice')
+    if avg_price > 0:
+        avg_price_line = [avg_price] * len(df_price['Date'])
+        plt.plot(df_price['Date'], avg_price_line, linestyle='--', color='grey', label='CurrentAvgPrice')
 
     plt.legend()
 
