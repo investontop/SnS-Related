@@ -10,6 +10,7 @@ import sys
 from datetime import datetime
 import numpy_financial as npf
 import StockAPI
+import PlotChartUtil
 
 
 
@@ -38,6 +39,10 @@ def read_price_data(price_details, stock_name):
                 df_price['Price'] = df_price['Price'].astype(str)
                 df_price['Price'] = pd.to_numeric(df_price['Price'].str.replace(",", ""), errors='coerce')
                 return df_price, f
+
+    print(f'\n    <<<<Warning>>>> Price details NOT present for the stock "{stock_name}" in the path {price_details}')
+    exit(404)
+
     return pd.DataFrame(), ""
 
 
@@ -47,6 +52,7 @@ def read_trade_data(trade_details, stock_name, platform):
     for dirname, _, filenames in os.walk(trade_details):
         for f in filenames:
             if f.startswith(stock_name):
+                print(f)
                 df_temp = pd.read_csv(os.path.join(dirname, f))
                 df_trade = pd.concat([df_trade, df_temp], ignore_index=True)
 
@@ -197,7 +203,8 @@ def plot_data_kite(platform, df_price, df_trade, stock_name):
 
     plt.figure(figsize=(12, 7))
     plt.plot(df_price['Date'], df_price['Price'], color='b', label='Price')
-    plt.plot(df_price['Date'], avg_price_line, linestyle='--', color='grey', label='CurrentAvgPrice')
+    if avg_price > 0:
+        plt.plot(df_price['Date'], avg_price_line, linestyle='--', color='grey', label='CurrentAvgPrice')
     # # Annotate the avg price at the end of the line
     # plt.text(df_price['Date'].iloc[-1], avg_price, f"{avg_price:.2f}",
     #          color='grey', fontsize=10, va='top', ha='left', fontweight='bold')
@@ -318,12 +325,15 @@ def calculate_irr(df_trade, platform):
 
 def main():
     print("\nUse this module to plot the Stock Price and Trade details\n")
-    demat = input('     Which account are we working on? (HSEC / ZX4974 / YY8886): ').upper().strip()
+    demat = input('     Which account are we working on? (HSEC / ZX4974 / YY8886 / FS2831): ').upper().strip()
     price_details, trade_details = get_directories(demat)
-    platform = 'KITE' if demat in ('ZX4974', 'YY8886') else 'HSEC' if demat == 'HSEC' else 'unknown'
+    platform = 'KITE' if demat in ('ZX4974', 'YY8886', 'FS2831') else 'HSEC' if demat == 'HSEC' else 'unknown'
 
     print(
         f"\n     Folders used for Historic Price and Trade details:\n         PriceDetails: {price_details}\n         TradePrice: {trade_details}\n")
+
+    PlotChartUtil.FormatTradeDetails(platform, trade_details, os.path.join(trade_details, "TRADE"))
+    # exit()
 
     stock_name = input('    What stock to plot: ').upper().replace(" ", "")
     df_price, price_file = read_price_data(price_details, stock_name)
@@ -334,7 +344,7 @@ def main():
         plot_data_hsec(platform, df_price, df_trade, stock_name)
         total_buy_price, total_buy_qty, total_sell_price, total_sell_qty, total_dividend = calculate_details(df_trade, platform)
         print(
-            f"Total Bought: {total_buy_qty} qty | {total_buy_price} INR\nTotal Sold: {total_sell_qty} qty | {total_sell_price} INR\nTotal Dividend: {total_dividend} INR")
+            f"\n         Total Bought: {total_buy_qty} qty | {total_buy_price} INR\n         Total Sold: {total_sell_qty} qty | {total_sell_price} INR")
 
 
     elif platform == 'KITE':
@@ -343,7 +353,7 @@ def main():
         plot_data_kite(platform, df_price, df_trade, stock_name)
 
 
-    print("Completed")
+    print("\nCompleted")
 
 if __name__ == "__main__":
     main()
