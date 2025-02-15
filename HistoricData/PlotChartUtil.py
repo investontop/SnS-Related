@@ -65,7 +65,7 @@ def FormatTradeDetails(platform, trade_details, trade_details_source):
                 "HINDALCO INDUSTRIES LTD":"HINDALCO",
                 "HINDUSTAN UNILEVER LTD": "HUL",
                 "INDIAN ENERGY EXCHANGE LIMITD": "IEX",
-                "INDIAN RAILWAY CATERING & TOURISM CO LTD": "IRFC",
+                "INDIAN RAILWAY CATERING & TOURISM CO LTD": "IRCTC",
                 "INDIAN RAILWAY FINANCE CORP LTD": "IRFC",
                 "INDRAPRASTHA GAS LTD": "IGL",
                 "INDUSIND BANK LIMITED": "INDUSINDBANK",

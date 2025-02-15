@@ -52,7 +52,7 @@ def read_trade_data(trade_details, stock_name, platform):
     for dirname, _, filenames in os.walk(trade_details):
         for f in filenames:
             if f.startswith(stock_name):
-                print(f)
+                # print(f)
                 df_temp = pd.read_csv(os.path.join(dirname, f))
                 df_trade = pd.concat([df_trade, df_temp], ignore_index=True)
 
@@ -76,7 +76,7 @@ def read_trade_data(trade_details, stock_name, platform):
     return df_trade
 
 
-def plot_data_hsec(platform, df_price, df_trade, stock_name):
+def plot_data_hsec(platform, df_price, df_trade, stock_name, demat):
     """Plot the price and trade data."""
     df_buy = df_trade[(df_trade['TRANSACTION TYPE'] == 'TRADE') & (df_trade['ACTION'] == 'Buy')]
     df_sell = df_trade[(df_trade['TRANSACTION TYPE'] == 'TRADE') & (df_trade['ACTION'] == 'Sell')]
@@ -92,7 +92,7 @@ def plot_data_hsec(platform, df_price, df_trade, stock_name):
     price_range = np.linspace(min_price, max_price, num=15)
     plt.yticks(price_range)
 
-    plt.title(f'Stock Price Over Time for {stock_name}')
+    plt.title(f'{demat} Stock Price Over Time for {stock_name}')
     plt.xlabel('Date')
     plt.ylabel('Price')
     plt.grid(True, linestyle='--', alpha=0.6)
@@ -174,7 +174,7 @@ def group_by_date_mean(platform, df):
 
         return df_temp
 
-def plot_data_kite(platform, df_price, df_trade, stock_name):
+def plot_data_kite(platform, df_price, df_trade, stock_name, demat):
     """Plot the price and trade data."""
     df_buy = df_trade[(df_trade['trade_type'] == 'buy')]
     df_sell = df_trade[(df_trade['trade_type'] == 'sell')]
@@ -214,7 +214,7 @@ def plot_data_kite(platform, df_price, df_trade, stock_name):
     price_range = np.linspace(min_price, max_price, num=15)
     plt.yticks(price_range)
 
-    plt.title(f'Stock Price Over Time for {stock_name}')
+    plt.title(f'{demat} Stock Price Over Time for {stock_name}')
     plt.xlabel('Date')
     plt.ylabel('Price')
     plt.grid(True, linestyle='--', alpha=0.6)
@@ -341,7 +341,7 @@ def main():
     # df_trade = df_trade.drop_duplicates(subset='trade_id')  # This will be used only for zerodha trade files, HSEC trade files doesnot have trade_id
 
     if platform == 'HSEC':
-        plot_data_hsec(platform, df_price, df_trade, stock_name)
+        plot_data_hsec(platform, df_price, df_trade, stock_name, demat)
         total_buy_price, total_buy_qty, total_sell_price, total_sell_qty, total_dividend = calculate_details(df_trade, platform)
         print(
             f"\n         Total Bought: {total_buy_qty} qty | {total_buy_price} INR\n         Total Sold: {total_sell_qty} qty | {total_sell_price} INR")
@@ -350,7 +350,7 @@ def main():
     elif platform == 'KITE':
         df_trade = df_trade.drop_duplicates(subset='trade_id')
         # calculate_irr(df_trade, platform)
-        plot_data_kite(platform, df_price, df_trade, stock_name)
+        plot_data_kite(platform, df_price, df_trade, stock_name, demat)
 
 
     print("\nCompleted")
