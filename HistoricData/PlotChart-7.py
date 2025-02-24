@@ -52,7 +52,6 @@ def read_trade_data(trade_details, stock_name, platform):
     for dirname, _, filenames in os.walk(trade_details):
         for f in filenames:
             if f.startswith(stock_name):
-                # print(f)
                 df_temp = pd.read_csv(os.path.join(dirname, f))
                 df_trade = pd.concat([df_trade, df_temp], ignore_index=True)
 
@@ -179,8 +178,7 @@ def plot_data_kite(platform, df_price, df_trade, stock_name, demat):
     df_buy = df_trade[(df_trade['trade_type'] == 'buy')]
     df_sell = df_trade[(df_trade['trade_type'] == 'sell')]
 
-    # df_buy_group = group_by_date(df_buy)
-    # df_sell_group = group_by_date(df_sell)
+
     df_buy_group = group_by_date_mean(platform, df_buy)
     df_sell_group = group_by_date_mean(platform, df_sell)
 
@@ -222,6 +220,8 @@ def plot_data_kite(platform, df_price, df_trade, stock_name, demat):
 
     plt.scatter(df_buy_group['trade_date'], df_buy_group['price'], color='g', marker='o', s=50, label='Buy Prices')
     plt.scatter(df_sell_group['trade_date'], df_sell_group['price'], color='r', marker='o', s=50, label='Sell Prices')
+
+    # print(df_buy_group)
 
     # plot the text
     plt.text(0.02, 0.95, text, transform=plt.gca().transAxes, fontsize=10,
@@ -332,7 +332,7 @@ def main():
     print(
         f"\n     Folders used for Historic Price and Trade details:\n         PriceDetails: {price_details}\n         TradePrice: {trade_details}\n")
 
-    PlotChartUtil.FormatTradeDetails(platform, trade_details, os.path.join(trade_details, "TRADE"))
+    PlotChartUtil.FormatTradeDetails(platform, trade_details, os.path.join(trade_details, "TRADE"), demat)
     # exit()
 
     stock_name = input('    What stock to plot: ').upper().replace(" ", "")
@@ -346,9 +346,11 @@ def main():
         print(
             f"\n         Total Bought: {total_buy_qty} qty | {total_buy_price} INR\n         Total Sold: {total_sell_qty} qty | {total_sell_price} INR")
 
+        # PlotChartUtil.telegramMsg(f"\n         Total Bought: {total_buy_qty} qty | {total_buy_price} INR\n         Total Sold: {total_sell_qty} qty | {total_sell_price} INR")
+
 
     elif platform == 'KITE':
-        df_trade = df_trade.drop_duplicates(subset='trade_id')
+        df_trade = df_trade.drop_duplicates(subset=['trade_id', 'trade_date'])
         # calculate_irr(df_trade, platform)
         plot_data_kite(platform, df_price, df_trade, stock_name, demat)
 
