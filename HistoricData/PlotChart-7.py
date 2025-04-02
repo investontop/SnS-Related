@@ -302,26 +302,26 @@ def calculate_details(df_trade, platform):
                     df_trade['TRANSACTION TYPE'] == 'CORPORATE ACTION'), 'VALUE AT COST(Incl. addnl charges)'].sum()
         return total_buy_price, total_buy_qty, total_sell_price, total_sell_qty, total_dividend
 
-def calculate_irr(df_trade, platform):
-    if platform == 'KITE':
-        df = df_trade.copy()
-
-        # Ensure the cash flows are sorted by trade_date
-        df = df.sort_values(by='trade_date')
-
-        # Display all columns
-        # pd.set_option('display.max_columns', None)
-        # print(df.head())
-
-        # Calculate cash flow
-        df['cash_flow'] = np.where(df['trade_type'] == 'buy',
-                                   df['quantity'] * df['price'] * -1,
-                                   df['quantity'] * df['price'])
-
-        cash_flows = df['cash_flow'].tolist()
-        irr = npf.irr(cash_flows)
-
-        print(irr)
+# def calculate_irr(df_trade, platform):
+#     if platform == 'KITE':
+#         df = df_trade.copy()
+#
+#         # Ensure the cash flows are sorted by trade_date
+#         df = df.sort_values(by='trade_date')
+#
+#         # Display all columns
+#         # pd.set_option('display.max_columns', None)
+#         # print(df.head())
+#
+#         # Calculate cash flow
+#         df['cash_flow'] = np.where(df['trade_type'] == 'buy',
+#                                    df['quantity'] * df['price'] * -1,
+#                                    df['quantity'] * df['price'])
+#
+#         cash_flows = df['cash_flow'].tolist()
+#         irr = npf.irr(cash_flows)
+#
+#         print(irr)
 
 def main():
     print("\nUse this module to plot the Stock Price and Trade details\n")
