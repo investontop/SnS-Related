@@ -66,7 +66,7 @@ def read_trade_data(trade_details, stock_name, platform):
         #         df_trade['DATE'] = pd.to_datetime(df_trade['DATE'], format=fmt, errors='coerce')
         #     except ValueError:
         #         continue
-
+        
         df_trade['DATE'] = pd.to_datetime(df_trade['DATE'], format='%d-%b-%Y')
         df_trade['totalDays'] = (current_date - df_trade['DATE']).dt.days
     elif platform == 'KITE':
