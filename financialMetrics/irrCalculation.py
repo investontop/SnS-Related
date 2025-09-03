@@ -4,8 +4,14 @@ import pandas as pd
 from datetime import datetime
 from dateutil import parser
 from scipy.optimize import newton
+from sqlalchemy import text
 
 _engine = None
+
+# Parms: Platform, Demat, StockName, NetProfit, irr
+_irrLogQuery = """
+    SELECT insert_stock_irr(:platform, :demat, :stock_name, :net_profit, :irr_value);
+"""
 
 # def connectDB():
 #     #connect to Postgres
@@ -119,6 +125,19 @@ def main(platform, demat, stockName, max_length, message_lines):
             # print(entry[1])
             netProfit = netProfit + entry[1]
         # print(f"{stockName}: netProfit: {netProfit} | IRR: {irr * 100:.2f}%")
+        engine = connectDB()
+        # dfirr = pd.read_sql(_irrLogQuery, con=engine, params=(platform, demat, stockName,netProfit, float(irr)))
+        with engine.begin() as conn:
+            result = conn.execute(
+                text(_irrLogQuery),
+                {
+                    "platform": platform,
+                    "demat": demat,
+                    "stock_name": stockName,
+                    "net_profit": netProfit,
+                    "irr_value": float(irr*100)
+                }
+            )
         print(f"{stockName:<{max_length}}| netProfit: {netProfit:>{11}.2f} | IRR: {irr * 100:.2f}%")
         formatted_line = f"{stockName:<{max_length}}| netProfit: {netProfit:>{11}.2f} | IRR: {irr * 100:.2f}%"
         message_lines.append(formatted_line)

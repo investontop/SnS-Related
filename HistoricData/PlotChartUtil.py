@@ -22,6 +22,7 @@ def hdfcScripts(script):
         "COAL INDIA LIMITED": "COALINDIA",
         "COMPUTER AGE MANAGEMENT SERVICES LTD": "CAMS",
         "GLOBAL EDUCATION LIMITED": "GLOBALEDU",
+        "HDB FINANCIAL SERVICES LIMITED": "HDBFS",
         "HDFC BANK LTD": "HDFCBANK",
         "HINDALCO INDUSTRIES LTD": "HINDALCO",
         "HINDUSTAN UNILEVER LTD": "HUL",
@@ -35,6 +36,7 @@ def hdfcScripts(script):
         "KNR Constructions Limited": "KNRCON",
         "KOTAK MAHINDRA BANK LTD": "KOTAKMAH",
         "KPIT TECHNOLOGIES LIMITED": "KPIT",
+        "K.P.R.MILL LIMITED": "KPRMILL",
         "LARSEN & TOUBRO LTD": "LT",
         "LAURUS LABS LIMITED": "LAURUSLAB",
         "MAHANAGAR GAS LIMITED": "MGL",
@@ -55,6 +57,8 @@ def hdfcScripts(script):
         "STATE BANK OF INDIA": "SBI",
         "TATA POWER CO LTD": "TATAPOWER",
         "TECH MAHINDRA LIMITED": "TECHM",
+        "THE SOUTH INDIAN BANK LTD": "SOUTHINDIANBANK",
+        "THE GREAT EASTERN SHIPPING CO. LIMITED": "GESHIP",
         "VOLTAS LTD": "VOLTAS"
 
         # Add more mappings as needed
