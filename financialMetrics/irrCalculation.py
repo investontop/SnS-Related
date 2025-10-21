@@ -185,6 +185,6 @@ def main(platform, demat, stockName, max_length, message_lines):
 if __name__ == "__main__":
     platform = 'KITE'
     demat = 'ZX4974'
-    stockName = 'ROUTE'
+    stockName = 'HDFCBANK'
     message_lines = []
     main(platform, demat, stockName, len(stockName), message_lines)
