@@ -128,7 +128,7 @@ def main():
     commonTradePathandFile = os.path.join(tradedetailpath, overAllTrades)
     df_totalTradeSource = createTotalTradeDf(commonTradePathandFile)
 
-    for year in ["ALL"] + [str(y) for y in range(2020, 2026)]:
+    for year in ["ALL"] + [str(y) for y in range(2020, 2027)]:
         df_totalTradeSource = processSourcedf(year, df_totalTradeSource, tradedetailpath, year+"_totalQty", year+"_totalPrice", year+"_avg")
 
     # print(df_totalTradeSource)

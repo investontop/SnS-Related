@@ -55,7 +55,7 @@ def read_trade_data(trade_details, stock_name, platform):
                 df_temp = pd.read_csv(os.path.join(dirname, f))
                 df_trade = pd.concat([df_trade, df_temp], ignore_index=True)
 
-    #to calculate the todalDays
+    #to calculate the totalDays
     current_date = datetime.now()
 
     if platform == 'HSEC':
@@ -70,7 +70,8 @@ def read_trade_data(trade_details, stock_name, platform):
         df_trade['DATE'] = pd.to_datetime(df_trade['DATE'], format='%d-%b-%Y')
         df_trade['totalDays'] = (current_date - df_trade['DATE']).dt.days
     elif platform == 'KITE':
-        df_trade['trade_date'] = pd.to_datetime(df_trade['trade_date'], format='%Y-%m-%d')
+        # df_trade['trade_date'] = pd.to_datetime(df_trade['trade_date'], format='%Y-%m-%d')
+        df_trade['trade_date'] = pd.to_datetime(df_trade['trade_date'],format='mixed',dayfirst=True)
         df_trade['totalDays'] = (current_date - df_trade['trade_date']).dt.days
     return df_trade
 
