@@ -37,7 +37,7 @@ def plotTheChart(plot_df):
 
     plt.show()
 
-def plotTheChartBothBuyandSell(monthly_summary):
+def plotTheChartBothBuyandSell(monthly_summary, platform):
 
     # Plot using Seaborn
     plt.figure(figsize=(20, 6))
@@ -47,7 +47,7 @@ def plotTheChartBothBuyandSell(monthly_summary):
     plt.xlabel("Month (YYYYMM)")
     plt.ylabel("Net Amount")
     plt.ticklabel_format(style="plain", axis="y")  # Disable scientific notation on Y-axis
-    plt.title("Net Amount for Buy (B) and Sell (S) Actions")
+    plt.title(platform + " - Net Amount for Buy (B) and Sell (S) Actions")
     plt.xticks(rotation=45)
     plt.legend(title="Action")
     # Enable Grid
@@ -91,7 +91,7 @@ def connectDBandCreateDF(dematList):
             # df_B = monthly_summary[monthly_summary["action"] == "B"]
             # plotTheChart(df_B)
 
-            plotTheChartBothBuyandSell(monthly_summary)
+            plotTheChartBothBuyandSell(monthly_summary, platform)
 
 
 

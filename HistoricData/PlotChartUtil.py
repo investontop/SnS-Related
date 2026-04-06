@@ -36,6 +36,7 @@ def hdfcScripts(script):
         "INDIAN RAILWAY FINANCE CORP LTD": "IRFC",
         "INDRAPRASTHA GAS LTD": "IGL",
         "INDUSIND BANK LIMITED": "INDUSINDBANK",
+        "ITC HOTELS LIMITED": "HOTELITC",
         "ITC LTD": "ITC",
         "KALYAN JEWELLERS INDIA LIMITED": "KALYAN",
         "KNR Constructions Limited": "KNRCON",
@@ -86,7 +87,7 @@ def updateDB(final_df_postgres, demat, tableName):
     with engine.begin() as conn:
         # conn.execute("TRUNCATE FROM eq_trade_hsec RESTART IDENTITY")
         if demat != 'HSEC':
-            conn.execute(text(f"DELETE FROM {tableName} WHERE DEMAT_ID = '{demat}'")) # didnt used truncate because we cannot use where clause
+            conn.execute(text(f"DELETE FROM {tableName} WHERE DEMAT_ID = '{demat}'")) # didn't use truncate because we cannot use where clause
             print(f'{demat}: Table data deleted before inserting')
         elif demat == 'HSEC':
             conn.execute(text(f"TRUNCATE TABLE {tableName} RESTART IDENTITY"))
@@ -105,6 +106,28 @@ def updateDB(final_df_postgres, demat, tableName):
         engine.dispose()  #Explicitly close the engine connection pool
         print(f"{demat}: Postgres connection closed!\n\n\n")
 
+def FormatNewExtract(platform, df):
+    if platform == 'HSEC':
+        # 1. Get column name of first column
+        col_to_move = df.columns[0]
+        # 2. Remove it
+        col_series = df.pop(col_to_move)
+        # 3. Insert at position 8 (Excel column I)
+        df.insert(8, col_to_move, col_series)
+        #4. Formast the date as per our code format
+        df["trDate"] = pd.to_datetime(df["trDate"], errors="coerce")
+        # df["trDate"] = pd.to_datetime(df["trDate"], format="%d-%b-%Y")
+        df["trDate"] = df["trDate"].dt.strftime("%d-%b-%y")
+        #5. Format the Action col
+        df["Action"] = (
+            df["Action"]
+            .str.strip()
+            .str.upper()
+            .replace({"BUY": "B", "SELL": "S"})
+        )
+        return(df)
+
+
 def FormatTradeDetails(platform, trade_details, trade_details_source, demat):
     # Note: This is used in PlotChart-x.py & CalculateAvgPrice.py
 
@@ -115,6 +138,9 @@ def FormatTradeDetails(platform, trade_details, trade_details_source, demat):
 
     for f in source_files:
         df = pd.read_csv(os.path.join(trade_details_source, f))
+        if df.columns[0] == 'ScriptName': ## From the year 2026, HSEC trade details file is slightly different. The ScriptName col comes first. That has to be swapped as per code.
+            df = FormatNewExtract(platform, df)
+        # print(df.head())
         df_list.append(df)  # Append to the list
 
     if df_list:  # Check if df_list is not empty

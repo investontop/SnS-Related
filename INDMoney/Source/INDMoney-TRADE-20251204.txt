@@ -1,0 +1,1624 @@
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+03 Dec 25
+
+Amount
+$62.65
+
+Price
+$62.47
+
+Novo Nordisk A/s
+Novo Nordisk A/s
+Buy successful
+
+Order date
+03 Dec 25
+
+Amount
+$47.94
+
+Price
+$47.80
+
+Accenture Plc
+Accenture Plc
+Sell successful
+
+Order date
+03 Dec 25
+
+Amount
+$397.77
+
+Price
+$265.18
+
+Novo Nordisk A/s
+Novo Nordisk A/s
+Buy successful
+
+Order date
+24 Nov 25
+
+Amount
+$44.3
+
+Price
+$44.06
+
+Coinbase Global Inc
+Coinbase Global Inc
+Buy successful
+
+Order date
+05 Nov 25
+
+Amount
+$157.21
+
+Price
+$313.49
+
+Novo Nordisk A/s
+Novo Nordisk A/s
+Buy successful
+
+Order date
+05 Nov 25
+
+Amount
+$47.15
+
+Price
+$47.01
+
+Alphabet Inc. - Class A Shares
+Alphabet Inc. - Class A Shares
+Sell successful
+
+Order date
+05 Nov 25
+
+Amount
+$283.84
+
+Price
+$283.84
+
+Novo Nordisk A/s
+Novo Nordisk A/s
+Buy successful
+
+Order date
+28 Oct 25
+
+Amount
+$52.05
+
+Price
+$51.90
+
+Salesforce Inc
+Salesforce Inc
+Sell successful
+
+Order date
+21 Oct 25
+
+Amount
+$266.71
+
+Price
+$266.71
+
+Novo Nordisk A/s
+Novo Nordisk A/s
+Buy successful
+
+Order date
+20 Oct 25
+
+Amount
+$56.22
+
+Price
+$56.05
+
+Alphabet Inc. - Class A Shares
+Alphabet Inc. - Class A Shares
+Buy successful
+
+Order date
+08 Oct 25
+
+Amount
+$246.02
+
+Price
+$245.30
+
+Coinbase Global Inc
+Coinbase Global Inc
+Sell successful
+
+Order date
+08 Oct 25
+
+Amount
+$191.04
+
+Price
+$381.78
+
+Accenture Plc
+Accenture Plc
+Buy successful
+
+Order date
+01 Oct 25
+
+Amount
+$121.3
+
+Price
+$241.89
+
+Accenture Plc
+Accenture Plc
+Buy successful
+
+Order date
+22 Sep 25
+
+Amount
+$240.29
+
+Price
+$239.58
+
+Coinbase Global Inc
+Coinbase Global Inc
+Buy successful
+
+Order date
+03 Sep 25
+
+Amount
+$153.41
+
+Price
+$305.91
+
+Coinbase Global Inc
+Coinbase Global Inc
+Buy successful
+
+Order date
+20 Aug 25
+
+Amount
+$148.75
+
+Price
+$296.62
+
+Salesforce Inc
+Salesforce Inc
+Buy successful
+
+Order date
+18 Aug 25
+
+Amount
+$242.21
+
+Price
+$241.50
+
+Novo Nordisk A/s
+Novo Nordisk A/s
+Buy successful
+
+Order date
+08 Aug 25
+
+Amount
+$101.68
+
+Price
+$50.69
+
+Novo Nordisk A/s
+Novo Nordisk A/s
+Buy successful
+
+Order date
+08 Aug 25
+
+Amount
+$50.83
+
+Price
+$50.68
+
+Novo Nordisk A/s
+Novo Nordisk A/s
+Buy successful
+
+Order date
+04 Aug 25
+
+Amount
+$61.76
+
+Price
+$48.87
+
+Coinbase Global Inc
+Coinbase Global Inc
+Buy successful
+
+Order date
+04 Aug 25
+
+Amount
+$321.68
+
+Price
+$320.73
+
+Novo Nordisk A/s
+Novo Nordisk A/s
+Buy successful
+
+Order date
+31 Jul 25
+
+Amount
+$49.18
+
+Price
+$49.04
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+31 Jul 25
+
+Amount
+$105.12
+
+Price
+$69.87
+
+Novo Nordisk A/s
+Novo Nordisk A/s
+Buy successful
+
+Order date
+30 Jul 25
+
+Amount
+$50.65
+
+Price
+$50.50
+
+Novo Nordisk A/s
+Novo Nordisk A/s
+Buy successful
+
+Order date
+30 Jul 25
+
+Amount
+$101.32
+
+Price
+$50.51
+
+Coinbase Global Inc
+Coinbase Global Inc
+Buy successful
+
+Order date
+28 Jul 25
+
+Amount
+$376.06
+
+Price
+$377.97
+
+Novo Nordisk A/s
+Novo Nordisk A/s
+Buy successful
+
+Order date
+21 Jul 25
+
+Amount
+$64.67
+
+Price
+$64.48
+
+Coinbase Global Inc
+Coinbase Global Inc
+Sell successful
+
+Order date
+21 Jul 25
+
+Amount
+$433.13
+
+Price
+$433.13
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Sell successful
+
+Order date
+21 Jul 25
+
+Amount
+$225.46
+
+Price
+$75.15
+
+Coinbase Global Inc
+Coinbase Global Inc
+Sell successful
+
+Order date
+17 Jul 25
+
+Amount
+$802.62
+
+Price
+$401.31
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Sell successful
+
+Order date
+11 Jul 25
+
+Amount
+$448.75
+
+Price
+$74.79
+
+Coinbase Global Inc
+Coinbase Global Inc
+Sell successful
+
+Order date
+11 Jul 25
+
+Amount
+$1829.26
+
+Price
+$391.71
+
+Coinbase Global Inc
+Coinbase Global Inc
+Sell successful
+
+Order date
+11 Jul 25
+
+Amount
+$4.69
+
+Price
+$392.00
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+04 Apr 25
+
+Amount
+$59.55
+
+Price
+$59.37
+
+Novo Nordisk A/s
+Novo Nordisk A/s
+Buy successful
+
+Order date
+04 Apr 25
+
+Amount
+$63.69
+
+Price
+$63.50
+
+Novo Nordisk A/s
+Novo Nordisk A/s
+Buy successful
+
+Order date
+13 Feb 25
+
+Amount
+$40.0
+
+Price
+$79.58
+
+Novo Nordisk A/s
+Novo Nordisk A/s
+Buy successful
+
+Order date
+10 Feb 25
+
+Amount
+$85.54
+
+Price
+$85.29
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+05 Feb 25
+
+Amount
+$78.88
+
+Price
+$78.65
+
+Novo Nordisk A/s
+Novo Nordisk A/s
+Buy successful
+
+Order date
+23 Jan 25
+
+Amount
+$40.0
+
+Price
+$81.34
+
+Novo Nordisk A/s
+Novo Nordisk A/s
+Buy successful
+
+Order date
+21 Jan 25
+
+Amount
+$10.0
+
+Price
+$80.46
+
+Novo Nordisk A/s
+Novo Nordisk A/s
+Buy successful
+
+Order date
+14 Jan 25
+
+Amount
+$50.0
+
+Price
+$80.86
+
+Coinbase Global Inc
+Coinbase Global Inc
+Buy successful
+
+Order date
+03 Jan 25
+
+Amount
+$50.0
+
+Price
+$263.01
+
+Novo Nordisk A/s
+Novo Nordisk A/s
+Buy successful
+
+Order date
+31 Dec 24
+
+Amount
+$42.98
+
+Price
+$85.70
+
+Novo Nordisk A/s
+Novo Nordisk A/s
+Buy successful
+
+Order date
+27 Dec 24
+
+Amount
+$50.0
+
+Price
+$88.33
+
+Novo Nordisk A/s
+Novo Nordisk A/s
+Buy successful
+
+Order date
+19 Dec 24
+
+Amount
+$50.0
+
+Price
+$103.32
+
+Novo Nordisk A/s
+Novo Nordisk A/s
+Buy successful
+
+Order date
+13 Dec 24
+
+Amount
+$50.0
+
+Price
+$106.34
+
+Novo Nordisk A/s
+Novo Nordisk A/s
+Buy successful
+
+Order date
+11 Dec 24
+
+Amount
+$222.37
+
+Price
+$110.99
+
+Novo Nordisk A/s
+Novo Nordisk A/s
+Buy successful
+
+Order date
+02 Dec 24
+
+Amount
+$544.14
+
+Price
+$108.64
+
+Coinbase Global Inc
+Coinbase Global Inc
+Buy successful
+
+Order date
+09 Sep 24
+
+Amount
+$152.98
+
+Price
+$152.75
+
+Coinbase Global Inc
+Coinbase Global Inc
+Buy successful
+
+Order date
+05 Aug 24
+
+Amount
+$190.21
+
+Price
+$189.93
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+17 May 24
+
+Amount
+$64.61
+
+Price
+$64.51
+
+Coinbase Global Inc
+Coinbase Global Inc
+Buy successful
+
+Order date
+17 May 24
+
+Amount
+$209.0
+
+Price
+$208.69
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+17 Apr 24
+
+Amount
+$63.41
+
+Price
+$63.32
+
+Coinbase Global Inc
+Coinbase Global Inc
+Buy successful
+
+Order date
+17 Apr 24
+
+Amount
+$212.75
+
+Price
+$212.43
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+25 Mar 24
+
+Amount
+$131.96
+
+Price
+$65.88
+
+Amazon.com Inc.
+Amazon.com Inc.
+Sell successful
+
+Order date
+25 Mar 24
+
+Amount
+$2284.68
+
+Price
+$179.77
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+01 Mar 24
+
+Amount
+$121.6
+
+Price
+$60.71
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+27 Oct 23
+
+Amount
+$100.0
+
+Price
+$50.92
+
+Kyndryl Holdings Inc
+Kyndryl Holdings Inc
+Sell successful
+
+Order date
+11 Aug 23
+
+Amount
+$604.85
+
+Price
+$16.16
+
+Amazon.com Inc.
+Amazon.com Inc.
+Buy successful
+
+Order date
+05 May 22
+
+Amount
+$100.0
+
+Price
+$2331.54
+
+Coinbase Global Inc
+Coinbase Global Inc
+Buy successful
+
+Order date
+02 May 22
+
+Amount
+$100.0
+
+Price
+$117.37
+
+Amazon.com Inc.
+Amazon.com Inc.
+Buy successful
+
+Order date
+29 Apr 22
+
+Amount
+$200.0
+
+Price
+$2518.75
+
+Coinbase Global Inc
+Coinbase Global Inc
+Buy successful
+
+Order date
+28 Apr 22
+
+Amount
+$100.0
+
+Price
+$116.13
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+26 Apr 22
+
+Amount
+$96.3
+
+Price
+$84.48
+
+Coinbase Global Inc
+Coinbase Global Inc
+Buy successful
+
+Order date
+26 Apr 22
+
+Amount
+$130.0
+
+Price
+$130.20
+
+Kyndryl Holdings Inc
+Kyndryl Holdings Inc
+Buy successful
+
+Order date
+26 Apr 22
+
+Amount
+$70.0
+
+Price
+$11.63
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+26 Apr 22
+
+Amount
+$100.0
+
+Price
+$84.58
+
+Amazon.com Inc.
+Amazon.com Inc.
+Buy successful
+
+Order date
+26 Apr 22
+
+Amount
+$150.0
+
+Price
+$2788.89
+
+Amazon.com Inc.
+Amazon.com Inc.
+Buy successful
+
+Order date
+25 Apr 22
+
+Amount
+$200.0
+
+Price
+$2882.10
+
+Kyndryl Holdings Inc
+Kyndryl Holdings Inc
+Buy successful
+
+Order date
+25 Apr 22
+
+Amount
+$60.0
+
+Price
+$11.71
+
+Coinbase Global Inc
+Coinbase Global Inc
+Buy successful
+
+Order date
+25 Apr 22
+
+Amount
+$140.0
+
+Price
+$132.83
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+25 Apr 22
+
+Amount
+$120.0
+
+Price
+$86.83
+
+International Business Machines Corp.
+International Business Machines Corp.
+Sell successful
+
+Order date
+22 Apr 22
+
+Amount
+$711.56
+
+Price
+$139.95
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+21 Apr 22
+
+Amount
+$100.0
+
+Price
+$90.98
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+20 Apr 22
+
+Amount
+$100.0
+
+Price
+$96.40
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+20 Apr 22
+
+Amount
+$100.0
+
+Price
+$97.05
+
+International Business Machines Corp.
+International Business Machines Corp.
+Buy successful
+
+Order date
+18 Apr 22
+
+Amount
+$150.0
+
+Price
+$125.82
+
+Coinbase Global Inc
+Coinbase Global Inc
+Buy successful
+
+Order date
+18 Apr 22
+
+Amount
+$100.0
+
+Price
+$144.56
+
+Kyndryl Holdings Inc
+Kyndryl Holdings Inc
+Buy successful
+
+Order date
+18 Apr 22
+
+Amount
+$60.0
+
+Price
+$12.56
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+18 Apr 22
+
+Amount
+$303.54
+
+Price
+$100.89
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+09 Mar 22
+
+Amount
+$100.0
+
+Price
+$99.59
+
+Kyndryl Holdings Inc
+Kyndryl Holdings Inc
+Buy successful
+
+Order date
+07 Mar 22
+
+Amount
+$58.14
+
+Price
+$11.63
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+18 Feb 22
+
+Amount
+$100.0
+
+Price
+$103.94
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+15 Feb 22
+
+Amount
+$100.0
+
+Price
+$114.67
+
+Coinbase Global Inc
+Coinbase Global Inc
+Buy successful
+
+Order date
+02 Feb 22
+
+Amount
+$100.0
+
+Price
+$185.44
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+02 Feb 22
+
+Amount
+$300.0
+
+Price
+$137.86
+
+Kyndryl Holdings Inc
+Kyndryl Holdings Inc
+Buy successful
+
+Order date
+28 Jan 22
+
+Amount
+$100.0
+
+Price
+$15.74
+
+Amazon.com Inc.
+Amazon.com Inc.
+Buy successful
+
+Order date
+28 Jan 22
+
+Amount
+$100.0
+
+Price
+$2806.04
+
+Coinbase Global Inc
+Coinbase Global Inc
+Buy successful
+
+Order date
+28 Jan 22
+
+Amount
+$100.0
+
+Price
+$175.33
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+28 Jan 22
+
+Amount
+$100.0
+
+Price
+$159.87
+
+Kyndryl Holdings Inc
+Kyndryl Holdings Inc
+Buy successful
+
+Order date
+11 Jan 22
+
+Amount
+$87.59
+
+Price
+$18.01
+
+Coinbase Global Inc
+Coinbase Global Inc
+Buy successful
+
+Order date
+11 Jan 22
+
+Amount
+$300.0
+
+Price
+$229.90
+
+Coca-cola Company, The
+Coca-cola Company, The
+Sell successful
+
+Order date
+11 Jan 22
+
+Amount
+$430.42
+
+Price
+$60.03
+
+Coinbase Global Inc
+Coinbase Global Inc
+Buy successful
+
+Order date
+06 Dec 21
+
+Amount
+$150.0
+
+Price
+$260.29
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+06 Dec 21
+
+Amount
+$100.0
+
+Price
+$183.55
+
+Amazon.com Inc.
+Amazon.com Inc.
+Buy successful
+
+Order date
+06 Dec 21
+
+Amount
+$150.0
+
+Price
+$3400.50
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+23 Nov 21
+
+Amount
+$176.04
+
+Price
+$185.60
+
+Kyndryl Holdings Inc
+Kyndryl Holdings Inc
+Buy successful
+
+Order date
+11 Nov 21
+
+Amount
+$100.0
+
+Price
+$22.18
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+11 Nov 21
+
+Amount
+$300.0
+
+Price
+$205.10
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+29 Sep 21
+
+Amount
+$100.0
+
+Price
+$261.63
+
+Amazon.com Inc.
+Amazon.com Inc.
+Buy successful
+
+Order date
+29 Sep 21
+
+Amount
+$300.0
+
+Price
+$3325.40
+
+Coinbase Global Inc
+Coinbase Global Inc
+Buy successful
+
+Order date
+22 Sep 21
+
+Amount
+$200.0
+
+Price
+$241.20
+
+Coca-cola Company, The
+Coca-cola Company, The
+Buy successful
+
+Order date
+22 Sep 21
+
+Amount
+$150.0
+
+Price
+$54.38
+
+Amazon.com Inc.
+Amazon.com Inc.
+Buy successful
+
+Order date
+22 Sep 21
+
+Amount
+$328.18
+
+Price
+$3374.51
+
+Coinbase Global Inc
+Coinbase Global Inc
+Buy successful
+
+Order date
+10 Sep 21
+
+Amount
+$572.33
+
+Price
+$257.40
+
+Apple, Inc.
+Apple, Inc.
+Sell successful
+
+Order date
+10 Sep 21
+
+Amount
+$435.96
+
+Price
+$155.19
+
+International Business Machines Corp.
+International Business Machines Corp.
+Buy successful
+
+Order date
+23 Aug 21
+
+Amount
+$53.0
+
+Price
+$139.19
+
+Coca-cola Company, The
+Coca-cola Company, The
+Buy successful
+
+Order date
+23 Aug 21
+
+Amount
+$250.0
+
+Price
+$56.67
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+19 Aug 21
+
+Amount
+$100.0
+
+Price
+$269.92
+
+Amazon.com Inc.
+Amazon.com Inc.
+Buy successful
+
+Order date
+17 Aug 21
+
+Amount
+$400.0
+
+Price
+$3258.48
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+17 Aug 21
+
+Amount
+$100.0
+
+Price
+$271.82
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+10 Aug 21
+
+Amount
+$100.0
+
+Price
+$273.02
+
+Apple, Inc.
+Apple, Inc.
+Buy successful
+
+Order date
+09 Aug 21
+
+Amount
+$146.45
+
+Price
+$146.45
+
+International Business Machines Corp.
+International Business Machines Corp.
+Buy successful
+
+Order date
+19 Jul 21
+
+Amount
+$100.0
+
+Price
+$137.34
+
+Apple, Inc.
+Apple, Inc.
+Buy successful
+
+Order date
+19 Jul 21
+
+Amount
+$115.0
+
+Price
+$142.11
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+19 Jul 21
+
+Amount
+$100.0
+
+Price
+$289.87
+
+International Business Machines Corp.
+International Business Machines Corp.
+Buy successful
+
+Order date
+13 Jul 21
+
+Amount
+$85.0
+
+Price
+$140.62
+
+International Business Machines Corp.
+International Business Machines Corp.
+Buy successful
+
+Order date
+02 Jul 21
+
+Amount
+$65.08
+
+Price
+$140.08
+
+Apple, Inc.
+Apple, Inc.
+Buy successful
+
+Order date
+28 Jun 21
+
+Amount
+$134.92
+
+Price
+$134.92
+
+International Business Machines Corp.
+International Business Machines Corp.
+Buy successful
+
+Order date
+18 Jun 21
+
+Amount
+$50.0
+
+Price
+$144.20
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+17 Jun 21
+
+Amount
+$100.0
+
+Price
+$269.99
+
+International Business Machines Corp.
+International Business Machines Corp.
+Buy successful
+
+Order date
+16 Jun 21
+
+Amount
+$100.0
+
+Price
+$148.54
+
+International Business Machines Corp.
+International Business Machines Corp.
+Buy successful
+
+Order date
+01 Jun 21
+
+Amount
+$100.0
+
+Price
+$144.05
+
+International Business Machines Corp.
+International Business Machines Corp.
+Buy canceled
+
+Order date
+01 Jun 21
+
+Amount
+$100.0
+
+Price
+-
+
+Paypal Holdings, Inc.
+Paypal Holdings, Inc.
+Buy successful
+
+Order date
+29 Apr 21
+
+Amount
+$100.0
+
+Price
+$271.53
