@@ -1,6 +1,7 @@
 # PlotChart
 # PlotChart-5.py + Converting the price from str to int in the fun read_price_data
 #                + included LongTerm & ShortTermQty in the fun plot_data_hsec
+# 2026/04/23    https://github.com/investontop/SnS-Related/issues/1     #1  Taking backup of existing table
 
 import os
 import pandas as pd
@@ -11,6 +12,7 @@ from datetime import datetime
 import numpy_financial as npf
 import StockAPI
 import PlotChartUtil
+import utilCommon
 
 
 
@@ -329,6 +331,9 @@ def main():
     demat = input('     Which account are we working on? (HSEC / ZX4974 / YY8886 / FS2831): ').upper().strip()
     price_details, trade_details = get_directories(demat)
     platform = 'KITE' if demat in ('ZX4974', 'YY8886', 'FS2831') else 'HSEC' if demat == 'HSEC' else 'unknown'
+
+    # #1
+    utilCommon.run_backup()
 
     print(
         f"\n     Folders used for Historic Price and Trade details:\n         PriceDetails: {price_details}\n         TradePrice: {trade_details}\n")

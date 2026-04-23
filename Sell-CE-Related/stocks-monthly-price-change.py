@@ -1,6 +1,31 @@
 import os
 import sys
 import pandas as pd
+from datetime import datetime
+import feedparser
+from urllib.parse import quote
+
+
+def get_news(stock, start_date, end_date):
+    query = quote(f"{stock} stock")   # encode here
+    
+    url = f"https://news.google.com/rss/search?q={query}&hl=en-IN&gl=IN&ceid=IN:en"
+    
+    feed = feedparser.parse(url)
+    
+    results = []
+    
+    for entry in feed.entries:
+        pub_date = datetime(*entry.published_parsed[:6])
+        
+        if start_date <= pub_date <= end_date:
+            results.append({
+                "title": entry.title,
+                "date": pub_date,
+                "link": entry.link
+            })
+    
+    return results
 
 def get_initialized(lookingFor):
 
@@ -74,6 +99,12 @@ def main():
     df_monthly.columns = ['Price_First', 'Price_Last', 'MonthlyChange%']
     df_monthly.to_csv(result_file, index=True) #include date as a column, not as index
     print(f"Results saved to {result_file}\n\n")
+
+    # Get news for the stock for the month of July 2024
+    # news = get_news(stock2calculate, datetime(2024,7,1), datetime(2024,7,31))
+    # print(f"News for {stock2calculate} in July 2024:")
+    # for item in news:
+    #     print(f"{item['date'].strftime('%Y-%m-%d')}: {item['title']} - {item['link']}")
 
 if __name__ == "__main__":
     main()

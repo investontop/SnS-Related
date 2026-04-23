@@ -2,7 +2,7 @@ import os
 import sys
 import pandas as pd
 import requests
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from sqlalchemy.exc import SQLAlchemyError
 
 
@@ -42,3 +42,15 @@ def connectPostgres():
         print("\n\nError: Environment variable postgresurl not set.")
 
     return engine
+
+def run_backup():
+    engine = connectPostgres()
+
+    with engine.connect() as conn:
+        try:
+            conn.execute(text("SELECT public.create_eq_trade_backup();"))
+            conn.commit()   # important if function does INSERT/UPDATE
+            print("Necessary backup taken")
+
+        except Exception as e:
+            print(f"Error executing function: {e}")
