@@ -2,6 +2,7 @@
 # PlotChart-5.py + Converting the price from str to int in the fun read_price_data
 #                + included LongTerm & ShortTermQty in the fun plot_data_hsec
 # 2026/04/23    https://github.com/investontop/SnS-Related/issues/1     #1  Taking backup of existing table
+# 2026/04/25    https://github.com/investontop/SnS-Related/issues/3     #3  Fixing issue in swapping the DD & MONTH
 
 import os
 import pandas as pd
@@ -152,12 +153,27 @@ def group_by_date(df):
 
 def group_by_date_mean(platform, df):
 
+    # 2026/04/25    https://github.com/investontop/SnS-Related/issues/3
+    # FIX: derive trade_date ONLY from source column
+    df['order_execution_time'] = pd.to_datetime(df['order_execution_time'], errors='coerce')
+    df['trade_date'] = df['order_execution_time'].dt.normalize()
+
     if platform == 'KITE':
         # Group by 'symbol' and 'trade_date', sum 'quantity', and calculate weighted average 'price'
-        df_temp = df.groupby(['symbol', 'trade_date', 'totalDays']).agg(
-            quantity = ('quantity', 'sum'),
-            price=('price', 'mean')
+        # df_temp = df.groupby(['symbol', 'trade_date', 'totalDays']).agg(
+        #     quantity = ('quantity', 'sum'),
+        #     price=('price', 'mean')
+        # ).reset_index()
+
+        # FIX 2: correct grouping (remove totalDays from group key)
+        df_temp = df.groupby(['symbol', 'trade_date']).apply(
+            lambda g: pd.Series({
+                'quantity': g['quantity'].sum(),
+                'price': (g['price'] * g['quantity']).sum() / g['quantity'].sum(),  # weighted avg
+                'totalDays': g['totalDays'].max()  # or min depending on logic
+            })
         ).reset_index()
+
 
         df_temp['totalPrice'] = df_temp['quantity'] * df_temp['price']
         df_temp = df_temp.sort_values(by='trade_date')
@@ -184,6 +200,7 @@ def plot_data_kite(platform, df_price, df_trade, stock_name, demat):
 
     df_buy_group = group_by_date_mean(platform, df_buy)
     df_sell_group = group_by_date_mean(platform, df_sell)
+
 
     # Longterm and Shortterm
     df_remaining, longTerm_qty, shortTerm_qty = fn_baseLongTerm_calc(platform, df_buy_group, df_sell_group)
