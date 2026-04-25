@@ -155,8 +155,8 @@ def group_by_date_mean(platform, df):
 
     # 2026/04/25    https://github.com/investontop/SnS-Related/issues/3
     # FIX: derive trade_date ONLY from source column
-    df['order_execution_time'] = pd.to_datetime(df['order_execution_time'], errors='coerce')
-    df['trade_date'] = df['order_execution_time'].dt.normalize()
+    # df['order_execution_time'] = pd.to_datetime(df['order_execution_time'], errors='coerce')
+    # df['trade_date'] = df['order_execution_time'].dt.normalize()
 
     if platform == 'KITE':
         # Group by 'symbol' and 'trade_date', sum 'quantity', and calculate weighted average 'price'
@@ -164,6 +164,11 @@ def group_by_date_mean(platform, df):
         #     quantity = ('quantity', 'sum'),
         #     price=('price', 'mean')
         # ).reset_index()
+
+        # 2026/04/25    https://github.com/investontop/SnS-Related/issues/3
+        # FIX: derive trade_date ONLY from source column
+        df['order_execution_time'] = pd.to_datetime(df['order_execution_time'], errors='coerce')
+        df['trade_date'] = df['order_execution_time'].dt.normalize()
 
         # FIX 2: correct grouping (remove totalDays from group key)
         df_temp = df.groupby(['symbol', 'trade_date']).apply(
