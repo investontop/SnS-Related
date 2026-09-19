@@ -18,6 +18,9 @@ CREATE TABLE Pattern01_Header (
     CONSTRAINT uq_header_key UNIQUE (header_id)
 );
 
+ALTER TABLE public.pattern01_header 
+ADD COLUMN IF NOT EXISTS setup_breached VARCHAR(10) DEFAULT 'No';
+
 -- 2. Create Child Table: Pattern01_Line
 CREATE TABLE Pattern01_Line (
     line_id             BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
