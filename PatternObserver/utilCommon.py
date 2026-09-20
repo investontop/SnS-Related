@@ -24,3 +24,14 @@ def connectPostgres():
 
     return engine
 
+@st.dialog("Warning!!")
+def show_warning_dialog(message):
+    st.warning(message)
+    if st.button("Close"):
+        st.rerun()  # Rerun the app to close the dialog
+
+@st.dialog("Confirmation!!")
+def show_confirmation_dialog(message):
+    st.info(message)
+    if st.button("Close"):
+        st.rerun()  # Rerun the app to close the dialog

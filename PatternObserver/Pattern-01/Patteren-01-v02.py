@@ -12,7 +12,8 @@ from sqlalchemy import create_engine, text
 
 # Option-01: (common)
 #   cd "PatternObserver\Pattern-01"
-#   streamlit run Patteren-01-v01.py 
+#   streamlit run Patteren-01-v02.py 
+#   streamlit run PatternObserver/Pattern-01/Patteren-01-v02.py
 
 # Option-02: (alternative)
 #   python -m streamlit run Patteren-01-v01.py
@@ -25,7 +26,8 @@ Previous_Setups_query = Pattern01["Previous_Setups_query"]
 New_setup_Confirmation_insert = Pattern01["New_setup_Confirmation_insert"]
 Update_setup = Pattern01["Update_setup"]
 Delete_selected_records = Pattern01["Delete_selected_records"]
-Search_stock_names = Pattern01["Search_stock_names"]
+# Search_stock_names = Pattern01["Search_stock_names"]
+Get_stock_lookup = Pattern01["Get_stock_lookup"]
 
 
 st.set_page_config(page_title="Pattern Observer - Streamlit App", page_icon=":cat:")
@@ -183,10 +185,10 @@ if st.button("Previous setup details"):
         st.warning("Please select a market before fetching details.")
 
 # =============================================================================
-# SECTION: NEW ENTRY FORM 
+# SECTION: Setup confirmation
 # =============================================================================
-with st.expander("➕ **Create New Pattern-01 Entry**", expanded=False):
-    with st.form(key="pattern_entry_form"):
+with st.expander("➕ **Setup Confirmation**", expanded=False):
+    with st.form(key="pattern_confirmation_form"):
         # =============================================================================
         # Setup Confirmation Details
         # =============================================================================
@@ -210,103 +212,6 @@ with st.expander("➕ **Create New Pattern-01 Entry**", expanded=False):
         setup_confirmation_submit_btn = st.form_submit_button("Save Setup Details")
 
         st.divider()
-
-        # =============================================================================
-        # New entry legs (BUY) and profit booking/exit legs (SELL)
-        # =============================================================================
-
-        # st.subheader("2. Entry Legs (BUY)")
-        # col_b1, col_b2, col_b3, col_b4 = st.columns(4)
-        # with col_b1:
-        #     init_qty = st.number_input("Initial Qty", min_value=0, value=0, step=1)
-        #     init_price = st.number_input("Initial Price", min_value=0.0, value=0.0, step=0.01)
-        # with col_b2:
-        #     add1_qty = st.number_input("Add-1 Qty", min_value=0, value=0, step=1)
-        #     add1_price = st.number_input("Add-1 Price", min_value=0.0, value=0.0, step=0.01)
-        # with col_b3:
-        #     add2_qty = st.number_input("Add-2 Qty", min_value=0, value=0, step=1)
-        #     add2_price = st.number_input("Add-2 Price", min_value=0.0, value=0.0, step=0.01)
-        # with col_b4:
-        #     add3_qty = st.number_input("Add-3 Qty", min_value=0, value=0, step=1)
-        #     add3_price = st.number_input("Add-3 Price", min_value=0.0, value=0.0, step=0.01)
-
-        st.subheader("2. Entry Legs (BUY)")
-        col_b0, col_b1, col_b2, col_b3 = st.columns(4)
-        with col_b0:
-            # stock_lookup = st.text_input("Buy Stock", placeholder="e.g., AAPL, RELIANCE").upper()
-            # if st.form_submit_button("Search Stock"):
-            #     try:
-            #         engine = get_db_engine()
-            #         search_pattern = f"%{stock_lookup}%"
-            #         search_results = pd.read_sql(
-            #             Search_stock_names,
-            #             engine,
-            #             params={"stock_name_pattern": search_pattern, "market": form_market}
-            #         )
-            #         if not search_results.empty:
-            #             st.write("Matching Stocks:")
-            #             st.dataframe(search_results, use_container_width=True)
-            #         else:
-            #             st.info("No matching stocks found.")
-            #     except Exception as e:
-            #         st.error(f"An error occurred while searching for stocks: {e}")
-            # User types part of a stock name
-            stock_lookup = st.text_input("Buy Stock", placeholder="e.g., AAPL, RELIANCE").upper()
-
-            selected_stock = None
-            if stock_lookup:  # only query if user typed something
-                try:
-                    engine = get_db_engine()
-                    search_pattern = f"%{stock_lookup}%"
-                    search_results = pd.read_sql(
-                        """
-                        SELECT DISTINCT stock_name
-                        FROM public.pattern01_header
-                        WHERE stock_name ILIKE %(stock_name_pattern)s
-                        AND market = %(market)s
-                        AND setup_breached = 'NO';
-                        """,
-                        engine,
-                        params={"stock_name_pattern": search_pattern, "market": form_market}
-                    )
-
-                    if not search_results.empty:
-                        selected_stock = st.selectbox(
-                            "Matching Stocks:",
-                            search_results["stock_name"].tolist()
-                        )
-                        st.session_state["buy_stock"] = selected_stock
-                    else:
-                        st.info("No matching stocks found.")
-                except Exception as e:
-                    st.error(f"Error occurred while searching: {e}")
-
-        # Use selected stock if available
-        buy_stock = st.session_state.get("buy_stock", "")
-
-        with col_b1:
-            buy_date = st.date_input("Buy Date",value=datetime.datetime.today(), min_value=date(2000, 1, 1), max_value=date(2100, 12, 31))
-        with col_b2:
-            buy_qty = st.number_input("Buy Qty", min_value=0, value=0, step=1)
-        with col_b3:
-            buy_price = st.number_input("Buy Price", min_value=0.0, value=0.0, step=0.01)
-
-        st.divider()
-
-        st.subheader("3. Profit Booking / Exit Legs (SELL)")
-        col_s1, col_s2, col_s3 = st.columns(3)
-        with col_s1:
-            book1_qty = st.number_input("Booking-1 Qty", min_value=0, value=0, step=1)
-            book1_price = st.number_input("Booking-1 Price", min_value=0.0, value=0.0, step=0.01)
-        with col_s2:
-            book2_qty = st.number_input("Booking-2 Qty", min_value=0, value=0, step=1)
-            book2_price = st.number_input("Booking-2 Price", min_value=0.0, value=0.0, step=0.01)
-        with col_s3:
-            book3_qty = st.number_input("Booking-3 Qty", min_value=0, value=0, step=1)
-            book3_price = st.number_input("Booking-3 Price", min_value=0.0, value=0.0, step=0.01)
-
-        st.divider()
-        form_submitted = st.form_submit_button("Preview New Entry")
 
     if setup_confirmation_submit_btn:
         if not form_stock:
@@ -332,6 +237,85 @@ with st.expander("➕ **Create New Pattern-01 Entry**", expanded=False):
                 utilCommon.show_confirmation_dialog(message)
             except Exception as error:
                 st.error(f"Failed to insert record into PostgreSQL: {error}")
+# =============================================================================
+# SECTION: Setup Entry
+# =============================================================================
+with st.expander("➕ **New Entry**", expanded=False):
+    with st.form(key="pattern_entry_form"):
+        # =============================================================================
+        # New entry legs (BUY)
+        # =============================================================================
+        st.subheader("2. Entry Legs (BUY)")
+
+        form_market = st.selectbox("Market", options=options, index=options.index(market) if market in options else 1)
+
+        # First row: Stock Lookup
+        col_lookup = st.columns(1)[0]
+        with col_lookup:
+            stock_lookup = st.text_input("Stock Lookup", placeholder="e.g., AAPL, RELIANCE").upper()
+            search_clicked = st.form_submit_button("Search Stock")
+
+            selected_stock = None
+            if search_clicked and stock_lookup:
+                try:
+                    engine = get_db_engine()
+                    search_pattern = f"%{stock_lookup}%"
+                    search_results = pd.read_sql(
+                    Get_stock_lookup,
+                    engine,
+                    params={"stock_name_pattern": search_pattern, "market": form_market}
+                    )
+
+                    if not search_results.empty:
+                        selected_stock = st.selectbox(
+                            "Matching Stocks:",
+                            search_results["stock_name"].tolist()
+                        )
+                        st.session_state["buy_stock"] = selected_stock
+                    else:
+                        st.info("No matching stocks found.")
+                except Exception as e:
+                    st.error(f"Error occurred while searching: {e}")
+
+        # Use selected stock if available
+        buy_stock = st.session_state.get("buy_stock", "")
+
+        # Second row: Buy Date, Qty, Price
+        col_b1, col_b2, col_b3 = st.columns(3)
+        with col_b1:
+            buy_date = st.date_input(
+                "Buy Date",
+                value=datetime.datetime.today(),
+                min_value=date(2000, 1, 1),
+                max_value=date(2100, 12, 31)
+            )
+        with col_b2:
+            buy_qty = st.number_input("Buy Qty", min_value=0, value=0, step=1)
+        with col_b3:
+            buy_price = st.number_input("Buy Price", min_value=0.0, value=0.0, step=0.01)
+
+        st.divider()
+
+# =============================================================================
+# SECTION: Setup Exit
+# =============================================================================
+with st.expander("➕ **Exit**", expanded=False):
+    with st.form(key="pattern_exit_form"):
+
+        st.subheader("3. Profit Booking / Exit Legs (SELL)")
+        col_s1, col_s2, col_s3 = st.columns(3)
+        with col_s1:
+            book1_qty = st.number_input("Booking-1 Qty", min_value=0, value=0, step=1)
+            book1_price = st.number_input("Booking-1 Price", min_value=0.0, value=0.0, step=0.01)
+        with col_s2:
+            book2_qty = st.number_input("Booking-2 Qty", min_value=0, value=0, step=1)
+            book2_price = st.number_input("Booking-2 Price", min_value=0.0, value=0.0, step=0.01)
+        with col_s3:
+            book3_qty = st.number_input("Booking-3 Qty", min_value=0, value=0, step=1)
+            book3_price = st.number_input("Booking-3 Price", min_value=0.0, value=0.0, step=0.01)
+
+        st.divider()
+        form_submitted = st.form_submit_button("Preview New Entry")
 
     if form_submitted:
         if not form_stock:
