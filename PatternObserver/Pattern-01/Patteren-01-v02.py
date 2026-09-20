@@ -269,13 +269,21 @@ with st.expander("➕ **New Entry**", expanded=False):
                     if not search_results.empty:
                         selected_stock = st.selectbox(
                             "Matching Stocks:",
-                            search_results["stock_name"].tolist()
+                            search_results["stock_name"].tolist(),
+                            index=search_results["stock_name"].tolist().index(
+                            st.session_state.get("buy_stock", search_results["stock_name"].tolist()[0])
+                            )
                         )
                         st.session_state["buy_stock"] = selected_stock
                     else:
                         st.info("No matching stocks found.")
+
                 except Exception as e:
                     st.error(f"Error occurred while searching: {e}")
+            else:
+                # 🔑 keep showing the previously selected stock
+                if "buy_stock" in st.session_state and st.session_state["buy_stock"]:
+                    st.selectbox("Matching Stocks:", [st.session_state["buy_stock"]], index=0)
 
         # Use selected stock if available
         buy_stock = st.session_state.get("buy_stock", "")
@@ -293,6 +301,34 @@ with st.expander("➕ **New Entry**", expanded=False):
             buy_qty = st.number_input("Buy Qty", min_value=0, value=0, step=1)
         with col_b3:
             buy_price = st.number_input("Buy Price", min_value=0.0, value=0.0, step=0.01)
+
+        # 🔑 Buy button + insert logic
+        buy_clicked = st.form_submit_button("Buy")
+        if buy_clicked and buy_stock and buy_qty > 0 and buy_price > 0.0:
+            try:
+                # engine = get_db_engine()
+                # with engine.begin() as conn:
+                #     result = conn.execute(
+                #         text(Pattern01["New_setup_Confirmation_insert"]),
+                #         {
+                #             "market": form_market,
+                #             "stock_name": buy_stock,
+                #             "setup_date": buy_date,
+                #             "conf_price": buy_price,
+                #             "setup_breached": "NO"
+                #         }
+                #     )
+                #     new_id = result.scalar()  # header_id returned
+                # st.success(f"Buy entry inserted successfully! Header ID: {new_id}")
+                message = "This functionality is not implemented yet. The buy entry will be saved in the next version."
+                utilCommon.show_warning_dialog(message)
+            except Exception as e:
+                st.error(f"Error occurred while inserting buy entry: {e}")
+
+        else:
+            if buy_clicked:
+                message = "Please ensure you have selected a stock and entered valid quantity and price before buying."
+                utilCommon.show_warning_dialog(message)
 
         st.divider()
 

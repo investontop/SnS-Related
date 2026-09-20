@@ -21,6 +21,9 @@ CREATE TABLE Pattern01_Header (
 ALTER TABLE public.pattern01_header 
 ADD COLUMN IF NOT EXISTS setup_breached VARCHAR(10) DEFAULT 'No';
 
+ALTER TABLE public.pattern01_header
+ADD COLUMN avg_price NUMERIC(18, 4);
+
 -- 2. Create Child Table: Pattern01_Line
 CREATE TABLE Pattern01_Line (
     line_id             BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
