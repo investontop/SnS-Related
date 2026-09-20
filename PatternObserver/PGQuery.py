@@ -36,10 +36,20 @@ Pattern01 = {
     #         and setup_breached = 'NO';
     #     """,
     "Get_stock_lookup": """
-            SELECT DISTINCT stock_name
+            SELECT DISTINCT header_id, stock_name
             FROM public.pattern01_header
             WHERE stock_name ILIKE %(stock_name_pattern)s
             AND market = %(market)s
-            AND setup_breached = 'NO';
-            """
+            AND setup_breached = 'NO'
+            order by stock_name, header_id;
+            """,
+    "Setup_Entry_Header_update": """
+            UPDATE public.pattern01_header
+            SET purchased_qty = purchased_qty + :qty,
+                invested_amount = invested_amount + (:qty * :price),
+                avg_price = (invested_amount + (:qty * :price)) / (purchased_qty + :qty)
+            WHERE stock_name = :stock
+            and market = :market
+            and header_id = :header_id
+            and setup_breached = 'NO';"""
 }

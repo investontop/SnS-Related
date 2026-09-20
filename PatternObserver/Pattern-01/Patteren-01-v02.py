@@ -28,6 +28,7 @@ Update_setup = Pattern01["Update_setup"]
 Delete_selected_records = Pattern01["Delete_selected_records"]
 # Search_stock_names = Pattern01["Search_stock_names"]
 Get_stock_lookup = Pattern01["Get_stock_lookup"]
+Setup_Entry_Header_update = Pattern01["Setup_Entry_Header_update"]
 
 
 st.set_page_config(page_title="Pattern Observer - Streamlit App", page_icon=":cat:")
@@ -151,7 +152,7 @@ with col1:
     market = st.selectbox(
         "Market",
         options=options,
-        index=None,
+        index=1,
         placeholder="Select a market..."
     )
 
@@ -266,15 +267,41 @@ with st.expander("➕ **New Entry**", expanded=False):
                     params={"stock_name_pattern": search_pattern, "market": form_market}
                     )
 
+                    # if not search_results.empty:
+                    #     selected_stock = st.selectbox(
+                    #         "Matching Stocks:",
+                    #         search_results["stock_name"].tolist(),
+                    #         index=search_results["stock_name"].tolist().index(
+                    #         st.session_state.get("buy_stock", search_results["stock_name"].tolist()[0])
+                    #         )
+                    #     )
+                    #     st.session_state["buy_stock"] = selected_stock
+
+
                     if not search_results.empty:
-                        selected_stock = st.selectbox(
+                        # Build labels like "TEST3 (ID: 123)"
+                        options = [
+                            f"{row['stock_name']} (ID: {row['header_id']})"
+                            for _, row in search_results.iterrows()
+                        ]
+
+                        # Use the stored display label if available, else default to first option
+                        default_label = st.session_state.get("buy_label", options[0])
+                        if default_label not in options:
+                            default_label = options[0]
+
+                        selected_label = st.selectbox(
                             "Matching Stocks:",
-                            search_results["stock_name"].tolist(),
-                            index=search_results["stock_name"].tolist().index(
-                            st.session_state.get("buy_stock", search_results["stock_name"].tolist()[0])
-                            )
+                            options,
+                            index=options.index(default_label)
                         )
-                        st.session_state["buy_stock"] = selected_stock
+
+                        # Map back to raw values
+                        chosen_row = search_results.iloc[options.index(selected_label)]
+                        st.session_state["buy_stock"] = chosen_row["stock_name"]
+                        # st.session_state["buy_header_id"] = chosen_row["header_id"]
+                        st.session_state["buy_header_id"] = int(chosen_row["header_id"])
+                        st.session_state["buy_label"] = selected_label  # keep display string for reruns
                     else:
                         st.info("No matching stocks found.")
 
@@ -283,7 +310,8 @@ with st.expander("➕ **New Entry**", expanded=False):
             else:
                 # 🔑 keep showing the previously selected stock
                 if "buy_stock" in st.session_state and st.session_state["buy_stock"]:
-                    st.selectbox("Matching Stocks:", [st.session_state["buy_stock"]], index=0)
+                    # st.selectbox("Matching Stocks:", [st.session_state["buy_stock"]], index=0)
+                    st.selectbox("Matching Stocks:", [f"{st.session_state['buy_stock']} (ID: {st.session_state.get('buy_header_id','')})"], index=0)
 
         # Use selected stock if available
         buy_stock = st.session_state.get("buy_stock", "")
@@ -306,24 +334,28 @@ with st.expander("➕ **New Entry**", expanded=False):
         buy_clicked = st.form_submit_button("Buy")
         if buy_clicked and buy_stock and buy_qty > 0 and buy_price > 0.0:
             try:
-                # engine = get_db_engine()
-                # with engine.begin() as conn:
-                #     result = conn.execute(
-                #         text(Pattern01["New_setup_Confirmation_insert"]),
-                #         {
-                #             "market": form_market,
-                #             "stock_name": buy_stock,
-                #             "setup_date": buy_date,
-                #             "conf_price": buy_price,
-                #             "setup_breached": "NO"
-                #         }
-                #     )
-                #     new_id = result.scalar()  # header_id returned
-                # st.success(f"Buy entry inserted successfully! Header ID: {new_id}")
-                message = "This functionality is not implemented yet. The buy entry will be saved in the next version."
-                utilCommon.show_warning_dialog(message)
+                header_id_val = st.session_state.get("buy_header_id")
+                engine = get_db_engine()
+                with engine.begin() as conn:
+                    result = conn.execute(
+                        text(Setup_Entry_Header_update),
+                        {
+                            "stock": buy_stock.strip().upper(),
+                            "market": form_market.strip().upper(),
+                            "qty": int(buy_qty),          # ensure plain int
+                            "price": float(buy_price),    # ensure plain float
+                            "header_id": header_id_val  # correct key
+                        }
+                    )
+                    # new_id = result.scalar()  # header_id returned
+                st.success(f"Buy entry updated successfully for **{buy_stock}**! market: {form_market}, qty: {buy_qty}, price: {buy_price}, count: {result.rowcount}")
+                # message = "This functionality is not implemented yet. The buy entry will be saved in the next version."
+                # utilCommon.show_warning_dialog(message)
             except Exception as e:
-                st.error(f"Error occurred while inserting buy entry: {e}")
+                st.error(f"Error occurred while updating buy entry: {e}")
+                # message = "This functionality is not implemented yet. The buy entry will be saved in the next version."
+                # utilCommon.show_warning_dialog(message)
+
 
         else:
             if buy_clicked:
