@@ -22,7 +22,14 @@ ALTER TABLE public.pattern01_header
 ADD COLUMN IF NOT EXISTS setup_breached VARCHAR(10) DEFAULT 'No';
 
 ALTER TABLE public.pattern01_header
-ADD COLUMN avg_price NUMERIC(18, 4);
+ADD COLUMN IF NOT EXISTS avg_price NUMERIC(18, 4);
+
+ALTER TABLE public.pattern01_header 
+ADD COLUMN IF NOT EXISTS current_price NUMERIC(10, 2) DEFAULT 0.00;
+
+ALTER TABLE public.pattern01_header
+ADD COLUMN time_frame VARCHAR(50);
+
 
 -- 2. Create Child Table: Pattern01_Line
 CREATE TABLE Pattern01_Line (

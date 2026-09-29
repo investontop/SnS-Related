@@ -29,6 +29,8 @@ Delete_selected_records = Pattern01["Delete_selected_records"]
 # Search_stock_names = Pattern01["Search_stock_names"]
 Get_stock_lookup = Pattern01["Get_stock_lookup"]
 Setup_Entry_Header_update = Pattern01["Setup_Entry_Header_update"]
+Update_cmp_in_db_selected_records = Pattern01["Update_cmp_in_db_selected_records"]
+Update_cmp_in_db_selected_records_update = Pattern01["Update_cmp_in_db_selected_records_update"]
 
 
 st.set_page_config(page_title="Pattern Observer - Streamlit App", page_icon=":cat:")
@@ -44,7 +46,17 @@ def get_db_engine():
 
 
 @st.dialog("Previous Setup Details")
-def show_pattern_details(engine, data):
+def show_pattern_details(engine, data, market, time_frame):
+    # st.subheader(f"Market: {market}, Time Frame: {time_frame}")
+    st.markdown(
+        f"""
+        <h3>
+            Market: <span style="color:green;">{market}</span> &nbsp; | &nbsp;
+            Time Frame: <span style="color:green;">{time_frame}</span>
+        </h3>
+        """,
+        unsafe_allow_html=True
+    )
     # Add a checkbox column for deletion
     data["Delete?"] = False
 
@@ -60,7 +72,7 @@ def show_pattern_details(engine, data):
         column_config={
             "setup_breached": st.column_config.SelectboxColumn(
                 "Setup Breached",
-                options=["YES", "NO"],   # dropdown values
+                options=["Yes", "No"],   # dropdown values
                 required=True
             )
         }
@@ -117,7 +129,7 @@ def pattern_details_delete_selected_records(engine, edited_data):
         st.info("No rows selected for deletion.")
 
 
-def insert_setup_header(engine, market, stock_name, setup_date, conf_price, setup_breached):
+def insert_setup_header(engine, market, stock_name, setup_date, conf_price, time_frame):
     try:
         insert_query = text(New_setup_Confirmation_insert)  # Use the query from PGQuery.py
 
@@ -129,7 +141,8 @@ def insert_setup_header(engine, market, stock_name, setup_date, conf_price, setu
                     "stock_name": stock_name,
                     "setup_date": setup_date,
                     "conf_price": conf_price,
-                    "setup_breached": str(setup_breached).upper()
+                    "time_frame": time_frame,
+                    "setup_breached": "No"  # Default value for new records
                 },
             )
             new_id = result.scalar()  # Fetches the returned header_id
@@ -140,11 +153,41 @@ def insert_setup_header(engine, market, stock_name, setup_date, conf_price, setu
         st.error(f"Error inserting record: {e}")
         return None
 
+
+def update_cmp_in_db(engine, market: str, stock_name: str = "", time_frame: str = ""):
+    """
+    Fetches setups from pattern01_header, gets live prices via yfinance, 
+    and updates current_price in PostgreSQL.
+    """
+    try:
+        # Step 1: Find setup headers that need price updates
+        select_sql = text(Update_cmp_in_db_selected_records)  # Use the query from PGQuery.py
+        
+        with engine.begin() as conn:
+            records = conn.execute(
+                select_sql, 
+                {"market": market.upper(), "stock_name": stock_name.upper(), "time_frame": time_frame.upper()}
+            ).mappings().all()
+
+            # Step 2: Fetch price for each stock and update DB
+            update_sql = text(Update_cmp_in_db_selected_records_update)  # Use the query from PGQuery.py
+
+            for rec in records:
+                live_price = utilCommon.get_live_cmp_1(rec["stock_name"], rec["market"])
+                if live_price > 0.0:
+                    conn.execute(
+                        update_sql, 
+                        {"cmp": live_price, "header_id": rec["header_id"]}
+                    )
+
+    except Exception as e:
+        st.error(f"Failed to update live market prices: {e}")
+
 # =============================================================================
 # SECTION: Previous Setup Details
 # =============================================================================
 # Create two side-by-side columns
-col1, col2 = st.columns(2)
+col1, col2, col3 = st.columns(3)
 options = ["USA", "INDIA"]
 
 # Column 1: Market Dropdown
@@ -164,6 +207,15 @@ with col2:
         placeholder="e.g., Use the name based on Tradingview"
     ).upper()
 
+# Column 3: Time_frame Dropdown
+with col3:
+    time_frame = st.selectbox(
+        "Time Frame",
+        options=["Daily", "Weekly", "Monthly"],
+        index=0,
+        placeholder="Select a time frame..."
+    )
+
 
 # "Previous setup details" Button is always visible
 if st.button("Previous setup details"):
@@ -173,13 +225,26 @@ if st.button("Previous setup details"):
 
         try:
             engine = get_db_engine()
+
+            # 🔑 STEP 1: Fetch live CMPs from Yahoo Finance and update PostgreSQL
+            with st.spinner("Fetching live market prices..."):
+                update_cmp_in_db(
+                    engine,
+                    market,
+                    stock_name.strip().upper() if stock_name else "",
+                    time_frame
+                )
+
+            # 🔑 STEP 2: Fetch refreshed data from PostgreSQL
             data = pd.read_sql(
                 Previous_Setups_query,
                 engine,
-                params={"stock_name": stock_name.upper() if stock_name else "", "market": market}
+                params={"stock_name": stock_name.upper() if stock_name else "", "market": market, "time_frame": time_frame}
 
             )
-            show_pattern_details(engine, data)
+
+            # 🔑 STEP 3: Display results modal
+            show_pattern_details(engine, data, market, time_frame)
         except Exception as error:
             st.error(f"Could not connect to PostgreSQL: {error}")
     else:
@@ -207,7 +272,7 @@ with st.expander("➕ **Setup Confirmation**", expanded=False):
         with col_m4:
             conf_price = st.number_input("Confirmation Price", min_value=0.0, value=0.0, step=0.01)
         with col_m5:
-            setup_breached = st.selectbox("Setup Breached?", options=["NO", "YES"], index=0)
+            time_frame = st.selectbox("Time Frame", options=["Daily", "Weekly", "Monthly"], index=0)
 
         # Form submission button
         setup_confirmation_submit_btn = st.form_submit_button("Save Setup Details")
@@ -230,7 +295,7 @@ with st.expander("➕ **Setup Confirmation**", expanded=False):
                 engine = get_db_engine()
                 # Execute database insertion via external function
                 new_id = insert_setup_header(
-                    engine, form_market, form_stock, setup_date, conf_price, setup_breached
+                    engine, form_market, form_stock, setup_date, conf_price, time_frame
                 )
                 # st.success(f"Setup successfully saved for **{form_stock}** with Record ID: **{new_id}**!")
                 message = f"Setup for **{form_stock}** has been saved. Please ensure to add the entry and exit legs in the next steps."
@@ -239,7 +304,7 @@ with st.expander("➕ **Setup Confirmation**", expanded=False):
             except Exception as error:
                 st.error(f"Failed to insert record into PostgreSQL: {error}")
 # =============================================================================
-# SECTION: Setup Entry
+# SECTION: New Entry
 # =============================================================================
 with st.expander("➕ **New Entry**", expanded=False):
     with st.form(key="pattern_entry_form"):
